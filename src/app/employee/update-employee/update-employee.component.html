@@ -1,0 +1,24 @@
+
+<div *ngIf="loading" class="lds-ripple">
+  <div></div>
+  <div></div>
+</div>
+<form (ngSubmit)="updateEmployee()" #employeeForm="ngForm">
+  <div class="form-group">
+    <label for="Name">Name:</label>
+    <input [(ngModel)]="employee.employee_name" placeholder="Name" name="name" class="form-control" id="employee_name">
+  </div>
+  <div class="form-group">
+    <label for="Salary">Salary:</label>
+    <input [(ngModel)]="employee.employee_salary" placeholder="Salary" name="Salary" class="form-control"
+      id="employee_salary">
+  </div>
+  <div class="form-group">
+    <label for="Age">Age:</label>
+    <input [(ngModel)]="employee.employee_age" placeholder="Age" name="phone" class="form-control" id="employee_age">
+  </div>
+  <div class="form-group text-left">
+    <button mat-raised-button color="accent"  type="submit">Save</button>
+    <button mat-raised-button color="warn" style="margin-left: 5px;" (click)="goBack($event)">Back</button>
+  </div>
+</form>

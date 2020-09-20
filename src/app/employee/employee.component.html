@@ -1,0 +1,42 @@
+
+
+<div *ngIf="loading" class="lds-ripple"><div></div><div></div></div>
+ <button mat-mini-fab color="accent" style="margin-bottom: 5px;" (click)="openModal()"><mat-icon> add
+</mat-icon></button>
+<div *ngIf="showDialog"
+  style=" z-index: 500; top:0;left:0; height: 100%; width: 100%;position: fixed; background-color: rgba(0,0,0,0.5);">
+  <div
+    style="width: 200px;padding:10px;border-radius: 10px; height: 150px; position: absolute;top: 50%; left: 50%;background-color: white; transform: translate(-50%,-50%);">
+    <div style="margin-bottom:20px">
+      {{message}}
+    </div>
+    <div style="text-align: center;"><button class="btn btn-info" (click)='action()'> {{buttonText}}</button>
+      <button *ngIf="buttonText==='Yes'" class="btn btn-danger" (click)="showDialog =false"> No</button></div>
+  </div>
+</div>
+<ngx-datatable
+class="material"
+[rows]="rows"
+[loadingIndicator]="loadingIndicator"
+[columnMode]="ColumnMode.force"
+[headerHeight]="50"
+[footerHeight]="50"
+rowHeight="auto"
+[reorderable]="reorderable">
+
+<ngx-datatable-column name="Name" sortable="true" prop="employee_name">
+</ngx-datatable-column>
+<ngx-datatable-column name="Salary" sortable="true" prop="employee_salary">
+</ngx-datatable-column>
+<ngx-datatable-column name="Age" sortable="true" prop="employee_age">
+</ngx-datatable-column>
+<ngx-datatable-column name="Actions" sortable="false" prop="id">
+  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template >
+    <a [routerLink]="['/update', row.id]" > <img src="assets/images/edit.png" title="edit" alt="edit" width="25px" height="25px" ></a> &nbsp;
+    <a  (click)="deleteEmployee(row)" style="margin-bottom: 2px;
+    padding: 2px;"> <img src="assets/images/delete.png" title="delete" alt="delete" width="15px" height="15px"></a>
+  </ng-template>
+</ngx-datatable-column>
+</ngx-datatable>
+
+
